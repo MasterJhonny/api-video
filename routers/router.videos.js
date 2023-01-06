@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const { VideosService } = require('../services/service.videos');
-const { createVideoSchema, updateVideoSchema, getVideoSchema } = require('../schemas/schema.videos');
+const { createVideoSchema, updateVideoSchema, getVideoSchema, getVideoByUserIdSchema } = require('../schemas/schema.videos');
 const { validatorHandler } = require('../middlewares/validator.handler');
 
 const service = new VideosService();
@@ -33,12 +33,13 @@ router.get('/:id',
 )
 
 // find videos by user_id
-router.get('/user/:id', 
-    // validatorHandler(getVideoSchema, 'params'),
+router.get('/user/:user_id', 
+    validatorHandler(getVideoByUserIdSchema, 'params'),
     async (req, res, next) => {
         try {
-            const { id } = req.params;
-            const video = await service.getVideosByUserId(id);
+            const { user_id } = req.params;
+            console.log("🚀 ~ file: router.videos.js:41 ~ id", user_id);
+            const video = await service.getVideosByUserId(user_id);
             res.status(200).json(video);
         } catch (error) {
             next(error);

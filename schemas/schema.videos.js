@@ -21,6 +21,11 @@ const updateVideoSchema = Joi.object({
 
 const getVideoSchema = Joi.object({
     id: id.required(),
-})
+});
 
-module.exports = { createVideoSchema, updateVideoSchema, getVideoSchema };
+const getVideoByUserIdSchema = Joi.object({
+    user_id: user_id.required(),
+});
+
+
+module.exports = { createVideoSchema, updateVideoSchema, getVideoSchema, getVideoByUserIdSchema };
