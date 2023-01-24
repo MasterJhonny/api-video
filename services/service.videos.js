@@ -13,12 +13,12 @@ class VideosService {
 
     async find () {
         const rta = await this.pool.query('SELECT * FROM videos');
-        return rta;
+        return rta[0];
     }
 
     async findById (id) {
         const rta = await this.pool.query('SELECT * FROM videos WHERE id = ?', [id]);
-        if (rta.length === 0) {
+        if (rta[0].length === 0) {
             throw new Error('Not Found! Video');
             return;
         }
@@ -28,12 +28,12 @@ class VideosService {
 
     async getVideosByUserId (id) {
         const rta = await this.pool.query('SELECT * FROM videos WHERE user_id = ?', [id]);
-        if (rta.length === 0) {
+        if (rta[0].length === 0) {
             throw new Error('Not Found! Video');
             return;
         }
-        console.log(rta);
-        return rta;
+        console.log(rta[0]);
+        return rta[0];
     }
 
     async update (id, changes) {

@@ -25,7 +25,7 @@ router.get('/:id',
         try {
             const { id } = req.params;
             const video = await service.findById(id);
-            res.status(200).json(video);
+            res.status(200).json(video[0]);
         } catch (error) {
             next(error);
         }
