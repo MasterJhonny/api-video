@@ -1,8 +1,14 @@
-const mysql = require('mysql');
-const { promisify } = require('util');
-const { config } = require('../config')
+const { createPool } = require('mysql2/promise');
 
-const pool = mysql.createPool(config.database);
+const { config } = require('../config');
+
+const pool = createPool({
+    host: config.database.host,
+    user: config.database.user,
+    password: config.database.password,
+    database: config.database.name,
+    port: config.database.port
+});
 
 pool.getConnection((err, connection) => {
     if(connection) {
@@ -13,7 +19,5 @@ pool.getConnection((err, connection) => {
         console.error('DATABASE ERROR!!', err);
     }
 })
-
-pool.query = promisify(pool.query);
 
 module.exports = pool;

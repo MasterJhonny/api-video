@@ -1,16 +1,13 @@
 require('dotenv').config();
 
 const config = {
-    port: process.env.PORT || 6640,
+    port: process.env.PORT || 3300,
     database: {
-        connectionLimit: 1000,
-        connectionTimeout: 60 * 60 *1000,
-        acquireTimeout: 60 * 60 *1000,
-        timeout: 60 * 60 *1000,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASS,
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASS || 'video',
+        name: process.env.DB_NAME || 'data-video',
         host: process.env.DB_HOST || 'localhost',
-        database: process.env.DB_NAME
+        port: process.env.DB_PORT || 3306,
     }
 }
 

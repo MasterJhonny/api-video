@@ -8,7 +8,6 @@
     "dev": "nodemon index.js",
     "up-data": "docker-compose up -d mysql",
     "x-data": "docker-compose exec mysql bash"
-
   },
   "keywords": [],
   "author": "Jhonny Callisaya <jhonnyeddy.22@gmail.com>",
@@ -18,6 +17,6 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "joi": "^17.6.0",
-    "mysql": "^2.18.1"
+    "mysql2": "^3.0.1"
   }
 }
